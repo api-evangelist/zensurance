@@ -124,6 +124,40 @@ findings:
     - url: https://github.com/zensurance
       status: 200
       note: Public org, internal tooling and Azure AI forks only. No specs or SDKs.
+    - url: https://www.zensurance.com/llms.txt
+      status: 200
+      date: '2026-07-25'
+      note: Real published llms.txt (178KB), harvested verbatim to
+        llms/zensurance-llms.txt. Marketing index of pages, posts, and FAQs for AI
+        assistants — no API or developer content. Its links resolve to the
+        zenstage.wpengine.com staging host, not the production domain.
+    - url: https://www.zensurance.com/llms-full.txt
+      status: 404
+      date: '2026-07-25'
+    - url: https://app.zensurance.com/.well-known/security.txt
+      status: 200
+      date: '2026-07-25'
+      note: Soft 404. Returns the SPA HTML shell (3,733 bytes, title "Zensurance"),
+        byte-identical to the response for /.well-known/openid-configuration. Not a
+        real discovery document.
+    - url: https://zensurance.zendesk.com/hc/en-us
+      status: 403
+      date: '2026-07-25'
+      note: Zendesk help centre is not public; the root redirects to a sign-in wall.
+    - url: https://status.zensurance.com/
+      status: 000
+      date: '2026-07-25'
+      note: Does not resolve. No status page, no SLA, no deprecation policy.
+    - url: https://trust.zensurance.com/
+      status: 000
+      date: '2026-07-25'
+      note: No trust centre. security.zensurance.com also does not resolve, and
+        /security, /trust, and /responsible-disclosure on www all return 404.
+    - url: https://registry.npmjs.org/-/v1/search?text=zensurance
+      status: 200
+      date: '2026-07-25'
+      note: Zero results. PyPI 404, RubyGems, Packagist, and crates.io all empty —
+        no first-party client libraries in any public registry.
   acordPosture:
     posture: no ACORD reference found
     searched:

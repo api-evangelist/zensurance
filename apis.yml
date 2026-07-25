@@ -23,7 +23,11 @@ description: Zensurance is a Toronto-based digital commercial insurance brokerag
   string, with a /health endpoint) but it is the undocumented backend for Zensurance's
   own quoting and policy application, not a published product API. No ACORD, AL3, ACORD
   XML, NGDS, or agency-management-system integration claim appears anywhere on the
-  company's public web properties.
+  company's public web properties. The one machine-addressable surface the company
+  does publish for automated consumers is an llms.txt at www.zensurance.com/llms.txt
+  — a 178KB marketing index of its pages, blog posts, and FAQs (which inadvertently
+  lists its zenstage.wpengine.com staging host rather than the production domain).
+  It describes insurance products for AI assistants; it documents no API.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Insurance
@@ -68,6 +72,39 @@ common:
   url: https://www.zensurance.com/careers
 - type: PrivacyPolicy
   url: https://www.zensurance.com/privacy-policy
+- type: TermsOfService
+  url: https://www.zensurance.com/terms-of-use
+  name: Terms of Service
+  description: Public terms of service for the Zensurance website and customer
+    application. Verified HTTP 200 on 2026-07-25.
+- type: Support
+  url: https://www.zensurance.com/contact
+  name: Contact Us
+  description: Public contact page — phone, email, and broker contact form, plus
+    24/7 claims support. Zensurance also runs a Zendesk instance at
+    zensurance.zendesk.com, but its help centre is not public (/hc/en-us returns
+    403; the root redirects to a sign-in wall), so the contact page is the only
+    open support channel.
+- type: SignUp
+  url: https://www.zensurance.com/quote
+  name: Get a Quote
+  description: Self-serve quote-to-bind entry point, which is how a customer
+    account is created. This is the consumer sign-up path — there is no developer
+    or API sign-up, and no partner API onboarding outside the partnership
+    application form.
+- type: LLMsTxt
+  url: llms/zensurance-llms.txt
+  name: Zensurance llms.txt
+  description: Harvested verbatim from https://www.zensurance.com/llms.txt (HTTP
+    200, 178KB). A marketing index of pages, blog posts, and FAQs for AI
+    assistants — no API, endpoint, or developer content in it. Its links point at
+    the zenstage.wpengine.com staging host rather than www.zensurance.com.
+- type: DomainSecurity
+  url: security/zensurance-domain-security.yml
+  name: Domain and transport security posture
+  description: Probed TLS/HSTS on www, api, and app hosts and DNSSEC/CAA/SPF/DMARC
+    on zensurance.com. HSTS everywhere; no DNSSEC, no CAA; SPF present, DMARC at
+    p=quarantine; api and app negotiate TLS 1.2 only.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

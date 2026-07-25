@@ -1,0 +1,65 @@
+generated: '2026-07-25'
+method: searched
+source: live probes of every Zensurance host on 2026-07-25
+summary: |
+  No RFC 9116 security.txt, no OIDC discovery document, no RFC 8414 authorization
+  server metadata, no api-catalog, and no ai-plugin manifest is served on any
+  Zensurance host. Every /.well-known/ path on www.zensurance.com and
+  api.zensurance.com returns 404. app.zensurance.com returns HTTP 200 for every
+  /.well-known/ path, but the body is the customer application's single-page-app
+  HTML shell (identical 3,733-byte document, title "Zensurance") rather than a
+  discovery document — a soft 404, recorded as such and NOT counted as a hit.
+  documents_found is 0; this file is the negative-probe record, and no WellKnown
+  pointer is wired in apis.yml because no well-known document exists.
+documents_found: 0
+hosts:
+- host: https://www.zensurance.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /security.txt
+    status: 404
+- host: https://api.zensurance.com
+  note: Undocumented first-party backend. Serves a JSON 404 envelope
+    ({"status":404,"error":"NOT FOUND"}) for every unmatched path.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+- host: https://app.zensurance.com
+  note: Single-page customer application. Returns 200 with the SPA HTML shell for
+    any path, so all 200s below are soft 404s, not discovery documents.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    real_document: false
+    note: SPA HTML shell, not RFC 9116 text.
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    real_document: false
+    note: SPA HTML shell, not OIDC metadata. Byte-identical to the security.txt
+      response.
+related:
+- path: /llms.txt
+  host: https://www.zensurance.com
+  status: 200
+  file: ../llms/zensurance-llms.txt
+  note: Not a /.well-known/ document, but the one machine-addressable AI-agent
+    surface Zensurance actually publishes. Saved verbatim.
+- path: /robots.txt
+  host: https://www.zensurance.com
+  status: 200
+  note: WordPress defaults plus three sitemap references. No AI-agent directives.
