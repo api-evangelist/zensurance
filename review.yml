@@ -1,0 +1,249 @@
+aid: zensurance
+name: Zensurance
+review:
+  question: Does Zensurance expose a public, self-serve developer portal or downloadable
+    API definitions for its insurance quote, bind, policy, or claims surfaces?
+  answer: false
+  date: '2026-07-25'
+  reviewer: API Evangelist
+  homeMarket: Canada
+  gated: true
+findings:
+  summary: |
+    Zensurance publishes no public developer portal and no machine-readable API
+    definitions. Every candidate developer host was probed on 2026-07-25 and either
+    failed to resolve or returned 404: developer.zensurance.com, developers.zensurance.com,
+    docs.zensurance.com, and partners.zensurance.com do not resolve (curl exit,
+    HTTP 000); www.zensurance.com/developers, /developer, /api, /docs, /partners,
+    /partner, /integrations, /brokers, and /technology all return HTTP 404.
+
+    api.zensurance.com resolves and returns HTTP 200, but it is not a product API.
+    The root returns a five-byte body — the literal string "4.0.0" — with an
+    Express-style hardened header set and a zsid-production session cookie;
+    /health returns {"ok":true}. Every documentation and specification path
+    probed against that host returns a JSON 404 from the application itself
+    ({"status":404,"error":"NOT FOUND"}): /openapi.json, /openapi.yaml,
+    /swagger.json, /swagger, /swagger-ui.html, /api-docs, /docs, /docs/,
+    /spec, /redoc, /v1/openapi.json, /v1, /v2, /api/v1, /api/docs, /quotes,
+    /v1/quotes, /graphql, and /graphql/. This is the undocumented backend for
+    Zensurance's own customer application at app.zensurance.com, which is a
+    login wall. No spec was harvested, so no openapi/ directory exists in
+    this repo.
+
+    The only integration claim Zensurance makes publicly is on its partnership
+    page (https://www.zensurance.com/zensurance-partnerships, HTTP 200), verbatim:
+    "Technical solutions: Seamless API integrations and co-branded white-label
+    tools that align with your systems" and, under "What does technical
+    integration entail?", "Our API solutions are designed for seamless
+    integration with your existing systems, minimizing the need for extensive
+    involvement from your tech team." No endpoint, base URL, authentication
+    scheme, sandbox, or reference documentation accompanies those claims; the
+    page's only call to action is a partnership application form. This is a
+    marketing statement of a partner-gated, privately negotiated integration,
+    not a developer portal — classified as (c) marketing page fronting (b) a
+    partner gate.
+
+    A wildcard host at zensurance.stoplight.io returns HTTP 200 but serves the
+    generic Stoplight platform landing page (title "Stoplight", default platform
+    meta description), not a Zensurance workspace — it is not a portal and was
+    not counted. zensurance.readme.io returns 404 and zensurance.docs.apiary.io
+    returns 502.
+
+    The public GitHub organization github.com/zensurance ("Toronto based
+    Insurtech startup") holds internal tooling, a Google Apps Script template,
+    and forks of Azure AI/RAG samples. No OpenAPI, no SDK, no client library,
+    no .proto.
+  developerPortal:
+    url: ''
+    confirmed: false
+    classification: none
+    note: No first-party developer portal exists. The nearest surface is the
+      partnership marketing page, which is a lead form, and app.zensurance.com,
+      which is a customer login wall.
+  probes:
+    - url: https://developer.zensurance.com/
+      status: 000
+      note: Does not resolve.
+    - url: https://developers.zensurance.com/
+      status: 000
+      note: Does not resolve.
+    - url: https://docs.zensurance.com/
+      status: 000
+      note: Does not resolve.
+    - url: https://partners.zensurance.com/
+      status: 000
+      note: Does not resolve.
+    - url: https://api.zensurance.com/
+      status: 200
+      note: Undocumented first-party backend. Body is the version string "4.0.0".
+    - url: https://api.zensurance.com/health
+      status: 200
+      note: Returns {"ok":true}. Only responsive path found.
+    - url: https://api.zensurance.com/openapi.json
+      status: 404
+    - url: https://api.zensurance.com/openapi.yaml
+      status: 404
+    - url: https://api.zensurance.com/swagger.json
+      status: 404
+    - url: https://api.zensurance.com/api-docs
+      status: 404
+    - url: https://api.zensurance.com/v1/openapi.json
+      status: 404
+    - url: https://api.zensurance.com/graphql
+      status: 404
+    - url: https://api.zensurance.com/.well-known/openid-configuration
+      status: 404
+    - url: https://api.zensurance.com/.well-known/oauth-authorization-server
+      status: 404
+    - url: https://api.zensurance.com/.well-known/security.txt
+      status: 404
+    - url: https://app.zensurance.com/
+      status: 200
+      note: Customer web application. Login wall.
+    - url: https://www.zensurance.com/developers
+      status: 404
+    - url: https://www.zensurance.com/api
+      status: 404
+    - url: https://www.zensurance.com/docs
+      status: 404
+    - url: https://www.zensurance.com/partners
+      status: 404
+    - url: https://www.zensurance.com/integrations
+      status: 404
+    - url: https://www.zensurance.com/zensurance-partnerships
+      status: 200
+      note: Partner program marketing page. Names "API integrations" but publishes
+        no documentation; entry point is an application form.
+    - url: https://zensurance.stoplight.io/
+      status: 200
+      note: Generic Stoplight platform landing page, not a Zensurance workspace.
+    - url: https://zensurance.readme.io
+      status: 404
+    - url: https://zensurance.docs.apiary.io
+      status: 502
+    - url: https://github.com/zensurance
+      status: 200
+      note: Public org, internal tooling and Azure AI forks only. No specs or SDKs.
+  acordPosture:
+    posture: no ACORD reference found
+    searched:
+      - ACORD
+      - AL3
+      - ACORD XML
+      - ACORD certified
+      - NGDS
+      - IVANS
+      - Applied Epic
+      - Vertafore
+      - AMS360
+      - agency download
+    note: Zero matches for any ACORD, AL3, NGDS, IVANS, or agency-management-system
+      term across www.zensurance.com (homepage, partnership page) and the site's
+      page and post sitemaps (357 pages, plus the blog sitemap). Consistent with a
+      direct-to-SMB digital broker that never touched the ACORD/AL3 agency-download
+      rails the traditional Canadian brokerage channel runs on.
+  insuranceVerbs:
+    quote:
+      exposed: false
+      note: Quoting exists only in the first-party consumer web flow at
+        www.zensurance.com and app.zensurance.com. No public quote API.
+    bind:
+      exposed: false
+      note: Purchase completes inside the authenticated customer application.
+    issue:
+      exposed: false
+      note: Policy documents are delivered through the customer portal. No policy
+        administration API is published.
+    fnol:
+      exposed: false
+      note: Claims are intaken by licensed broker staff (24/7 claims support). No
+        FNOL API, no claims endpoint, no claims documentation.
+    audience: consumer and partner, both through non-API channels — self-serve web
+      for SMB buyers, application-gated private integration for distribution partners.
+  authModel:
+    scheme: undetermined — none published
+    note: No authentication documentation exists. api.zensurance.com issues a
+      zsid-production session cookie (HttpOnly, Secure, SameSite=None), indicating
+      cookie-session auth for its own first-party client. Neither
+      /.well-known/openid-configuration nor /.well-known/oauth-authorization-server
+      is served (both 404), so no OAuth2 or OIDC surface is discoverable. Any
+      partner API credentials are issued privately after a partnership agreement.
+  webhooks:
+    documented: false
+    asyncapi: false
+    note: No event catalog, no webhook documentation, no AsyncAPI. Absence is the
+      finding.
+  postman:
+    publicWorkspace: false
+    note: No public Postman workspace or collection found for Zensurance.
+  graphql:
+    documented: false
+    note: /graphql and /graphql/ on api.zensurance.com both return the application's
+      JSON 404. No GraphQL surface to introspect.
+  grpc:
+    documented: false
+    note: No published .proto files.
+  transports:
+    - protocol: HTTPS (web application)
+      scheme: https
+      baseURL: https://www.zensurance.com/
+      documented: true
+      note: Public marketing site and self-serve quote funnel. Human interface only.
+    - protocol: HTTPS (authenticated web application)
+      scheme: https
+      baseURL: https://app.zensurance.com/
+      documented: true
+      note: Customer portal behind a login wall.
+    - protocol: REST (undocumented, first-party)
+      scheme: https
+      baseURL: https://api.zensurance.com
+      documented: false
+      note: Backend for the first-party application. Responds 200 at / and /health;
+        every other probed path 404s. Not a published product API.
+    - protocol: REST (partner)
+      scheme: https
+      documented: false
+      note: Referenced only as "API integrations" on the partnership page. No host,
+        no reference, no spec. Partner-gated.
+    - protocol: GraphQL
+      documented: false
+    - protocol: WebSocket
+      documented: false
+    - protocol: ACORD AL3 / ACORD XML
+      documented: false
+      note: No ACORD transport of any kind referenced.
+sources:
+  - url: https://www.zensurance.com/
+    type: Website
+    note: Company overview — licensed Canadian commercial brokerage since 2016,
+      100,000+ small businesses served, online quote-to-bind funnel.
+  - url: https://www.zensurance.com/zensurance-partnerships
+    type: Partners
+    note: Sole public mention of APIs. "Seamless API integrations and co-branded
+      white-label tools." Application-form gated; no documentation.
+  - url: https://api.zensurance.com/
+    type: API
+    note: HTTP 200, body "4.0.0". Undocumented first-party backend.
+  - url: https://app.zensurance.com/
+    type: CustomerPortal
+    note: Authenticated customer application. Login wall.
+  - url: https://github.com/zensurance
+    type: GitHubOrganization
+    note: Public repos are internal tooling and Azure AI forks. No API artifacts.
+  - url: https://www.zensurance.com/page-sitemap.xml
+    type: Sitemap
+    note: 357 pages enumerated and scanned. No developer, API, ACORD, or
+      integration documentation page exists.
+actions:
+  openapiHarvested: false
+  specsCount: 0
+  apisListed: 0
+  reason: |
+    No public, self-serve API surface exists to catalog. apis[] is intentionally
+    empty and no openapi/ directory was created, because nothing real was found
+    to put in one. Zensurance is recorded as a partner-gated insurtech broker —
+    which is the accurate reading of the Canadian insurance market, where there
+    is no open-insurance mandate, Consumer-Driven Banking excludes insurance,
+    and market conduct sits with provincial regulators rather than a national
+    API rule. If Zensurance ever publishes partner API reference documentation
+    or a specification, this record should be revisited.

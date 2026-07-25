@@ -1,0 +1,73 @@
+aid: zensurance
+url: https://raw.githubusercontent.com/api-evangelist/zensurance/refs/heads/main/apis.yml
+name: Zensurance
+kind: company
+description: Zensurance is a Toronto-based digital commercial insurance brokerage founded
+  in 2016 that sells small-business and freelancer coverage online across every Canadian
+  province, placing risk with Canadian carriers rather than underwriting it. Its book
+  is commercial property and casualty — general and commercial general liability, professional
+  liability and errors and omissions, cyber liability, directors and officers, commercial
+  property, commercial auto, builder's risk, and a long tail of trade- and profession-specific
+  packages — sold through a quote-to-bind web flow marketed as an instant online price
+  with licensed broker support and claims advocacy behind it. It sits in the thin digital-broker
+  layer beneath Canada's Big-Few carrier oligopoly, in a market with no open-insurance
+  mandate — OSFI supervises federally-regulated insurers prudentially while FSRA, the
+  AMF, and the other provincial regulators own market conduct, and Consumer-Driven Banking
+  excludes insurance outright. Its API posture reflects that. Zensurance publishes no
+  public, self-serve developer portal, no reference documentation, and no downloadable
+  OpenAPI, Swagger, GraphQL, or AsyncAPI definition. The company's partnership page
+  advertises "seamless API integrations and co-branded white-label tools" for distribution
+  partners, but the only route to that surface is a partnership application form —
+  the integration is partner-gated and privately negotiated. A first-party host at
+  api.zensurance.com answers on the public internet (HTTP 200, returning a bare version
+  string, with a /health endpoint) but it is the undocumented backend for Zensurance's
+  own quoting and policy application, not a published product API. No ACORD, AL3, ACORD
+  XML, NGDS, or agency-management-system integration claim appears anywhere on the
+  company's public web properties.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Insurance
+- Canada
+- Insurtech
+- Broker
+- Property and Casualty
+- Commercial Insurance
+- Small Business Insurance
+- Cyber Insurance
+- Digital Brokerage
+- Partner Gated
+created: '2026-07-25'
+modified: '2026-07-25'
+specificationVersion: '0.19'
+apis: []
+common:
+- type: Website
+  url: https://www.zensurance.com/
+- type: Blog
+  url: https://www.zensurance.com/blog
+- type: BlogRSS
+  url: https://www.zensurance.com/feed
+- type: Partners
+  url: https://www.zensurance.com/zensurance-partnerships
+  name: Zensurance Partnership Program
+  description: Partner program page. Advertises "seamless API integrations and co-branded
+    white-label tools" for distribution partners, but exposes no documentation, no
+    endpoints, and no specification — access is by partnership application form only.
+- type: CustomerPortal
+  url: https://app.zensurance.com/
+  name: Zensurance Customer Application
+  description: Authenticated first-party web application for quoting and managing
+    policies. Login wall, not a developer surface.
+- type: GitHubOrganization
+  url: https://github.com/zensurance
+  name: Zensurance Inc.
+  description: Public GitHub organization ("Toronto based Insurtech startup"). Repositories
+    are internal tooling, Google Apps Script templates, and forked Azure AI samples
+    — no API definitions or client SDKs published.
+- type: Careers
+  url: https://www.zensurance.com/careers
+- type: PrivacyPolicy
+  url: https://www.zensurance.com/privacy-policy
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
