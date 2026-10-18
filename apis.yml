@@ -59,7 +59,7 @@ tags:
 - Insurance
 - Canada
 - Insurtech
-- Brokers
+- Brokerage
 - Property and Casualty
 - Commercial Insurance
 - Small Business Insurance
@@ -75,6 +75,7 @@ tags_raw:
 - Small Business Insurance
 - Cyber Insurance
 - Digital Brokerage
+- Brokers
 created: '2026-07-25'
 modified: '2026-07-25'
 specificationVersion: '0.23'
