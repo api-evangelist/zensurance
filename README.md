@@ -1,4 +1,4 @@
-# Zensurance (zensurance)
+# Zensurance
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,65 +64,85 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Zensurance is a Toronto-based digital commercial insurance brokerage founded in 2016 that sells small-business and freelancer coverage online across every Canadian province, placing risk with Canadian carriers rather than underwriting it. Its book is commercial property and casualty — general and commercial general liability, professional liability and errors and omissions, cyber liability, directors and officers, commercial property, commercial auto, builder's risk, and a long tail of trade- and profession-specific packages — sold through a quote-to-bind web flow with licensed broker support and claims advocacy behind it.
+Zensurance is a Toronto-based digital commercial insurance brokerage founded in 2016 that sells small-business and freelancer coverage online across every Canadian province, placing risk with Canadian carriers rather than underwriting it. Its book is commercial property and casualty — general and commercial general liability, professional liability and errors and omissions, cyber liability, directors and officers, commercial property, commercial auto, builder's risk, and a long tail of trade- and profession-specific packages — sold through a quote-to-bind web flow marketed as an instant online price with licensed broker support and claims advocacy behind it. It sits in the thin digital-broker layer beneath Canada's Big-Few carrier oligopoly, in a market with no open-insurance mandate — OSFI supervises federally-regulated insurers prudentially while FSRA, the AMF, and the other provincial regulators own market conduct, and Consumer-Driven Banking excludes insurance outright. Its API posture reflects that. Zensurance publishes no public, self-serve developer portal, no reference documentation, and no downloadable OpenAPI, Swagger, GraphQL, or AsyncAPI definition. The company's partnership page advertises "seamless API integrations and co-branded white-label tools" for distribution partners, but the only route to that surface is a partnership application form — the integration is partner-gated and privately negotiated. A first-party host at api.zensurance.com answers on the public internet (HTTP 200, returning a bare version string, with a /health endpoint) but it is the undocumented backend for Zensurance's own quoting and policy application, not a published product API. No ACORD, AL3, ACORD XML, NGDS, or agency-management-system integration claim appears anywhere on the company's public web properties. The one machine-addressable surface the company does publish for automated consumers is an llms.txt at www.zensurance.com/llms.txt — a 178KB marketing index of its pages, blog posts, and FAQs (which inadvertently lists its zenstage.wpengine.com staging host rather than the production domain). It describes insurance products for AI assistants; it documents no API.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/zensurance/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/zensurance/refs/heads/main/apis.yml)
+**Areas:** Insurance · Canada · Insurtech · Brokerage · Property and Casualty · Commercial Insurance · Small Business Insurance · Cyber Insurance · Digital Brokerage
 
-## API Posture
+## Zensurance on APIs.io
 
-Zensurance publishes **no public, self-serve developer portal and no machine-readable API definitions**. Every candidate developer host was probed on 2026-07-25:
+Everything profiled for Zensurance is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/zensurance/](https://apis.io/providers/zensurance/)** — or go straight to one of the APIs or properties below.
 
-- `developer.zensurance.com`, `developers.zensurance.com`, `docs.zensurance.com`, `partners.zensurance.com` — do not resolve
-- `www.zensurance.com/developers`, `/developer`, `/api`, `/docs`, `/partners`, `/integrations` — HTTP 404
-- `api.zensurance.com` — HTTP 200, but it is the undocumented backend for the company's own application (root returns the version string `4.0.0`, `/health` returns `{"ok":true}`, every documentation and specification path returns the app's own JSON 404)
-- `app.zensurance.com` — HTTP 200, customer login wall
+### Published properties
 
-The only public API claim is on the [partnership page](https://www.zensurance.com/zensurance-partnerships) (HTTP 200): *"Seamless API integrations and co-branded white-label tools that align with your systems."* No endpoint, base URL, auth scheme, sandbox, or reference documentation accompanies it — the entry point is a partnership application form. The integration is **partner-gated and privately negotiated**.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **OpenAPI/Swagger specs harvested:** 0
-- **ACORD posture:** no ACORD reference found — zero matches for ACORD, AL3, ACORD XML, NGDS, IVANS, Applied Epic, Vertafore, or AMS360 across the site and its 357-page sitemap
-- **Quote / bind / issue / FNOL:** none exposed as an API; all four run through the first-party web application or licensed broker staff
-- **Auth model:** none published; the first-party backend uses a session cookie, and neither `/.well-known/openid-configuration` nor `/.well-known/oauth-authorization-server` is served
-- **Webhooks / AsyncAPI:** none documented
-- **Public Postman workspace:** none
-- **GraphQL / gRPC:** none
+#### Security (1)
 
-This is a correct and expected outcome for the sector. Canada has no open-insurance mandate: OSFI supervises federally-regulated insurers prudentially while FSRA, the AMF, and the other provincial regulators own market conduct, and Consumer-Driven Banking excludes insurance outright. Zensurance sits in the thin digital-broker layer beneath a Big-Few carrier oligopoly, and — unlike the traditional Canadian brokerage channel — never touched the ACORD/AL3 agency-download rails at all.
+Authentication, trust centre, and vulnerability disclosure.
 
-See [review.yml](review.yml) for the full probe log, HTTP statuses, and provenance.
+- [Zensurance Domain Security](https://apis.io/security/zensurance/zensurance-domain-security/)
 
-## Tags
+## Where to find this API
 
-- Insurance
-- Canada
-- Insurtech
-- Broker
-- Property and Casualty
-- Commercial Insurance
-- Small Business Insurance
-- Cyber Insurance
-- Digital Brokerage
-- Partner Gated
-
-## Timestamps
-
-- **Created:** 2026-07-25
-- **Modified:** 2026-07-25
-
-## APIs
-
-No public, self-serve APIs are documented. `apis[]` is intentionally empty.
-
-## Links
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.zensurance.com/)
+- [Sign up](https://www.zensurance.com/quote)
+- [Support](https://www.zensurance.com/contact)
 - [Blog](https://www.zensurance.com/blog)
-- [Partnership Program](https://www.zensurance.com/zensurance-partnerships)
-- [Customer Application](https://app.zensurance.com/)
-- [GitHub Organization](https://github.com/zensurance)
-- [Careers](https://www.zensurance.com/careers)
-- [Privacy Policy](https://www.zensurance.com/privacy-policy)
+- [Terms of service](https://www.zensurance.com/terms-of-use)
+- [Privacy policy](https://www.zensurance.com/privacy-policy)
+- [GitHub](https://github.com/zensurance)
 
-## Maintainers
+## API Evangelist rating
 
-- Kin Lane — kin@apievangelist.com
+**Kin Score 13.5** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 7.1 |
+| Access clarity | 34.2 |
+
+**Agent readiness 0.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 12.3** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/zensurance/](https://apis.io/providers/zensurance/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Zensurance: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/zensurance/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
